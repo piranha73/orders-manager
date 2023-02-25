@@ -1,0 +1,29 @@
+<h1><%= @table.name %></h1>
+
+<%# if @table.orders.size.zero? %>
+  <%# <h3>No Orders</h3> %>
+<%# else %>
+  <%# <h3>Orders</h3> %>
+<%# end %>
+
+<%# <h3><%= @table.orders.size.zero? ? "No Orders" : "Orders" </h3> %>
+<% orders = @table.orders %>
+
+<h3><%= "No" if orders.size.zero? %> Orders</h3>
+
+<ul>
+  <% orders.each do |order| %>
+    <li>
+      <%= order.meal.name %>
+      <%= link_to "delete order", order_path(order), data: {turbo_method: :delete, turbo_confirm: "You're persistently deleting this order, proceed?"} %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add Order", new_table_order_path(@table) %>
+
+<%= link_to "Back to tables list", tables_path %>
+ <%= link_to "Delete Table",
+    table_path(@table),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this table? You'll delete all the orders also!"}
+  %>

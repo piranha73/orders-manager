@@ -1,0 +1,6 @@
+<h1>Add order for Table <%= @table.name %></h1>
+
+<%= simple_form_for [@table, @order] do |f| %>
+  <%= f.association :meal %>
+  <%= f.submit %>
+<% end %>
